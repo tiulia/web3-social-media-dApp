@@ -148,7 +148,7 @@ class Main extends React.Component {
                 };
 
             }).then((result) => {
-
+                this.setState({ ipfsHash: result.path })
 
                 try {
                     this.state.contract.methods.addContent(message, this.bytes32(this.state.ipfsHash),
