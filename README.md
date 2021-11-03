@@ -109,7 +109,7 @@ Copy **build\contracts\IpfsPublisher.json** in **src\ABI.js**
 const ABI = { … }
 ```
 
-Mke sure you select local network or ropsten network when calling **web3.eth.contract**
+Make sure you select local network or ropsten network when calling **web3.eth.contract**
 
 ```js
 window.web3js = new Web3Js(ethereum)
