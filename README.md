@@ -47,8 +47,13 @@ Add local network in Metamask Extension.
 
 ![Ganache workspace](https://live.staticflickr.com/65535/51650034494_85daae6a93_b.jpg)
 
+Add Ganahe account to metamask. Use “Show Keys—Private key” and Import Account. Make sure this is the active account when calling transactions.
 
-## Deploy smart-contract IpfsPublisher on local network. 
+![metamask account](https://live.staticflickr.com/65535/51651633798_628f400ae9_b.jpg)
+
+![metamask account](https://live.staticflickr.com/65535/51651420541_6092ffa364_b.jpg)
+
+## Deploy smart-contract IpfsPublisher on local network or ropsten test network. 
 
 If you need to modify the contract check **contracts\IpfsPublisher.sol**
 
@@ -89,3 +94,33 @@ Deploy contract on localhost network and copy build\contracts\IpfsPublisher.json
 ```console
 truffle deploy --network development --reset
 ```
+
+or
+
+```console
+truffle deploy --network ropsten --reset
+```
+
+## web3 setup 
+
+Copy **build\contracts\IpfsPublisher.json** in **src\ABI.js**
+
+```js
+const ABI = { … }
+```
+
+Mke sure you select local network or ropsten network when calling **web3.eth.contract**
+
+```js
+window.web3js = new Web3Js(ethereum)
+try {
+     ethereum.request({ method: 'eth_requestAccounts' })
+} catch (error) {
+     alert('You must approve this dApp to interact with it, reload it to approve it')
+}       
+
+const user = (await web3js.eth.getAccounts())[0]
+window.contract = new web3js.eth.Contract(ABI.abi, ABI.networks["5777"].address, 
+     {from: user})
+```
+
